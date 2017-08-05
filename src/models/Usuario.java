@@ -25,6 +25,11 @@ public class Usuario implements Autenticacao {
 
     }
 
+    @Override
+    public Usuario cadastrarUsuario(String nome, String login, String senha) {
+        return null;
+    }
+
     public String getNome() {
         return nome;
     }
