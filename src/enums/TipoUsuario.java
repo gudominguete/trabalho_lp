@@ -3,7 +3,7 @@ package enums;
 public enum TipoUsuario {
 
     IMOBILIARIA(0,"Imobiliaria","IMOBILIARIA"),
-    PESSOA(1,"Pessoa","PESSOA"),
+    LOCATARIO(1,"Locatario","LOCATARIO"),
     PROPRIETARIO(2,"Proprietario","PROPRIETARIO");
 
     public int id;

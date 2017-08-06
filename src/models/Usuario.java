@@ -98,10 +98,10 @@ public class Usuario implements Autenticacao {
 
         Usuario usuario;
 
-        if(tipoUsuario.codigo.equals(TipoUsuario.PESSOA.codigo)){
+        if(tipoUsuario.codigo.equals(TipoUsuario.LOCATARIO.codigo)){
 
-            Pessoa pessoa = new Pessoa(nome, login, senha);
-            usuario = pessoa;
+            Locatario locatario = new Locatario(nome, login, senha);
+            usuario = locatario;
             //TODO: cadastrar no banco e gerar id
 
         }else if (tipoUsuario.codigo.equals(TipoUsuario.PROPRIETARIO.codigo)){
