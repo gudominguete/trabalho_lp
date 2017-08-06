@@ -12,6 +12,10 @@ public class Pessoa extends Usuario {
     private String rg;
     private String telefone;
 
+    public Pessoa(String nome, String login, String senha) {
+        super(nome, login, senha);
+    }
+
     public String getCpf() {
         return cpf;
     }

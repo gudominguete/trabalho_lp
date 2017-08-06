@@ -10,4 +10,7 @@ public class Imobiliaria extends Usuario {
     private String cnpj;
     private List<Imovel> listaImoveis;
 
+    public Imobiliaria(String nome, String login, String senha) {
+        super(nome, login, senha);
+    }
 }

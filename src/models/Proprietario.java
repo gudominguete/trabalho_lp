@@ -8,4 +8,8 @@ import java.util.List;
 public class Proprietario extends Usuario{
 
     List<Imovel> listaImoveis;
+
+    public Proprietario(String nome, String login, String senha) {
+        super(nome, login, senha);
+    }
 }

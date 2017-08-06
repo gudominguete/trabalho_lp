@@ -1,5 +1,7 @@
 package models;
 
+import enums.TipoUsuario;
+
 /**
  * Created by gudominguete on 03/08/17.
  */
@@ -8,7 +10,7 @@ public interface Autenticacao {
     /**
      * Função utilizada para realizar a autenticação no sistema
      */
-    public void autenticacao();
+    public void autenticacao(String login, String senha);
 
     /**
      * Função utilizada para recuperar a senha de um usuário
@@ -22,12 +24,15 @@ public interface Autenticacao {
      */
     public void trocarSenha(String senha);
 
+
     /**
-     * Função que cria um usuário no sistema
+     * Função para cadastrar usuário
      * @param nome
      * @param login
      * @param senha
+     * @param tipoUsuario
      * @return
      */
-    public Usuario cadastrarUsuario(String nome, String login, String senha);
+    public Usuario cadastrarUsuario(String nome, String login, String senha, TipoUsuario tipoUsuario);
+
 }
