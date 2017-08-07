@@ -6,6 +6,8 @@ package models;
 public class Imovel {
 
     private Integer id;
+    
+    private Endereco endereco;
 
     public Integer getId() {
         return id;
@@ -14,4 +16,13 @@ public class Imovel {
     public void setId(Integer id) {
         this.id = id;
     }
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 }

@@ -7,9 +7,17 @@ import java.util.List;
  */
 public class Proprietario extends Pessoa{
 
-    List<Imovel> listaImoveis;
+    private List<Imovel> listaImoveis;
 
     public Proprietario(String nome, String login, String senha) {
         super(nome, login, senha);
     }
+
+	public List<Imovel> getListaImoveis() {
+		return listaImoveis;
+	}
+
+	public void setListaImoveis(List<Imovel> listaImoveis) {
+		this.listaImoveis = listaImoveis;
+	}
 }

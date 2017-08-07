@@ -16,6 +16,4 @@ public enum TipoUsuario {
         this.codigo = codigo;
     }
 
-
-
 }
