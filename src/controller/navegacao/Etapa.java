@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Etapa {
 	
-	public int id;
+	private int id;
 	
-	public String nome;
+	private String nome;
 	
-	public List<Opcao> opcoes;
+	private List<Opcao> opcoes;
 	
-	public Etapa anterior;
+	private Etapa anterior;
 
 	public Etapa(int id, String nome) {
 		super();

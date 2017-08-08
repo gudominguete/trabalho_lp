@@ -2,13 +2,13 @@ package controller.navegacao;
 
 public class Opcao {
 	
-	public int id;
+	private int id;
 		
-	public String nome;
+	private String nome;
 	
-	public String acao;
+	private String acao;
 	
-	public Etapa proximaEtapa;
+	private Etapa proximaEtapa;
 
 	public Opcao(int id, String nome, String acao, Etapa proximaEtapa) {
 		super();
