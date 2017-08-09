@@ -3,10 +3,8 @@ package controller.navegacao;
 import java.util.List;
 import java.util.Scanner;
 
-import models.Endereco;
-import models.Imobiliaria;
-import models.Imovel;
-import models.Proprietario;
+import controller.BancoDeDados;
+import models.*;
 
 // Tornar Singleton
 public class Acoes {
@@ -80,13 +78,69 @@ public class Acoes {
 	}
 	
 	public void login() {
+
+		String login = readLine("Informe a login:", true);
+
+		String senha = readLine("Informe o senha:", true);
+
 		System.out.println("Realizando login");
+		for(Usuario usuario: BancoDeDados.usuarios){
+
+			if(usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)){
+
+				System.out.println(usuario.getNome());
+			}
+		}
 	}
 	
-	public void cadastrarUsuario() {
-		System.out.println("Cadastrando usuário");
+	public void cadastrarImobiliaria() {
+
+		System.out.println("Cadastrando Imobiliaria");
+
+		String nome = readLine("Informe a nome:", true);
+
+		String login = readLine("Informe o login:", true);
+
+		String senha = readLine("Informe o senha:", true);
+
+
+		Imobiliaria imobiliaria = new Imobiliaria(nome, login, senha);
+
+		BancoDeDados.usuarios.add(imobiliaria);
 	}
-	
+
+	public void cadastrarProprietario() {
+
+		System.out.println("Cadastrando proprietario");
+
+		String nome = readLine("Informe a nome:", true);
+
+		String login = readLine("Informe o login:", true);
+
+		String senha = readLine("Informe o senha:", true);
+
+
+		Proprietario proprietario = new Proprietario(nome, login, senha);
+
+		BancoDeDados.usuarios.add(proprietario);
+	}
+
+	public void cadastrarLocatario() {
+
+		System.out.println("Cadastrando locatario");
+
+		String nome = readLine("Informe a nome:", true);
+
+		String login = readLine("Informe o login:", true);
+
+		String senha = readLine("Informe o senha:", true);
+
+
+		Locatario locatario = new Locatario(nome, login, senha);
+
+		BancoDeDados.usuarios.add(locatario);
+	}
+
 	public void alterarSenha() {
 		
 		System.out.println("Alteração de senha");
@@ -114,6 +168,10 @@ public class Acoes {
 	
 	public void logout() {
 		System.out.println("Realizando logout");
+	}
+
+	public void exit(){
+		System.exit(0);
 	}
 
 }

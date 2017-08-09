@@ -49,6 +49,12 @@ public class Usuario implements Autenticacao {
     }
 
     /**
+     * Método para retornar a senha do usuário
+     * @return
+     */
+    public String getSenha(){return senha;}
+
+    /**
      * Função para alterar o login do usuário
      * @param login
      */

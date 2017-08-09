@@ -28,24 +28,34 @@ public class ControlPanel {
 		Etapa imobiliaria = new Etapa(2, "Imobiliária");
 		Etapa proprietario = new Etapa(3, "Proprietário");
 		Etapa locatario = new Etapa(4, "Locatário");
-		
+
+		//Opcoes login
 		Opcao optLogin = new Opcao(0, "Login", "login", login);
-		Opcao optCadUsuario = new Opcao(1, "Cadastrar usuário", "cadastrarUsuario", inicial);
-		Opcao optAlterarSenha = new Opcao(2, "Alterar senha", "alterarSenha", inicial);
-		
+		Opcao optCadImobiliaria = new Opcao(1, "Cadastrar imobiliaria", "cadastrarImobiliaria", inicial);
+		Opcao optCadProprietario = new Opcao(2, "Cadastrar proprietario", "cadastrarProprietario", inicial);
+		Opcao optCadLocatario = new Opcao(3, "Cadastrar locatario", "cadastrarLocatario", inicial);
+		Opcao optAlterarSenha = new Opcao(4, "Alterar senha", "alterarSenha", inicial);
+		Opcao optLogout = new Opcao(5, "Sair", "exit", inicial);
+
 		Opcao optListarImoveisImobiliaria = new Opcao(3, "Listar imóveis", "listarImoveisImobiliaria", imobiliaria);
 		Opcao optAlugarImovel = new Opcao(4, "Alugar imovel", "alugarImovel", imobiliaria);
 		Opcao optGerarCobranca = new Opcao(5, "Gerar cobrança", "gerarCobranca", imobiliaria);
 		Opcao optRemoverImovel = new Opcao(6, "Remover imóvel", "removerImovel", imobiliaria);
-		
-		Opcao optLogout = new Opcao(5, "Sair", "logout", inicial);
-		
-		inicial.opcoes.add(optLogin);
-		inicial.opcoes.add(optCadUsuario);
-		inicial.opcoes.add(optAlterarSenha);
-		inicial.opcoes.add(optLogout);
-		
-		login.opcoes.add(optLogout);
+
+
+		List<Opcao> listaOpcoesInicial = new ArrayList<>();
+		listaOpcoesInicial.add(optLogin);
+		listaOpcoesInicial.add(optCadImobiliaria);
+		listaOpcoesInicial.add(optCadProprietario);
+		listaOpcoesInicial.add(optCadLocatario);
+		listaOpcoesInicial.add(optAlterarSenha);
+		listaOpcoesInicial.add(optLogout);
+
+		inicial.setOpcoes(listaOpcoesInicial);
+
+		List<Opcao> listaOpcoesLogin = new ArrayList<>();
+		listaOpcoesLogin.add(optLogout);
+		login.setOpcoes(listaOpcoesLogin);
 		
 		etapas.add(inicial);
 		etapas.add(login);
@@ -81,12 +91,12 @@ public class ControlPanel {
 	
 	private void exibirEtapa(Etapa etapa) {
 
-		System.out.println(etapa.nome);
+		System.out.println(etapa.getNome());
 		System.out.println("Escolha a opção desejada:");
 		
-		for (Opcao opcao : etapa.opcoes) {
+		for (Opcao opcao : etapa.getOpcoes()) {
 
-			System.out.println((opcao.id + 1) + " - " + opcao.nome);
+			System.out.println((opcao.getId() + 1) + " - " + opcao.getNome());
 			
 		}
 		
@@ -95,18 +105,18 @@ public class ControlPanel {
 		int opt = sc.nextInt();
 //		sc.close();
 		
-		Opcao opcaoEscolhida = etapa.opcoes.get(opt - 1);
+		Opcao opcaoEscolhida = etapa.getOpcoes().get(opt - 1);
 		
 		processarOpcao(opcaoEscolhida);
 		
-		exibirEtapa(opcaoEscolhida.proximaEtapa);
+		exibirEtapa(opcaoEscolhida.getProximaEtapa());
 
 	}
 	
 	private void processarOpcao(Opcao opcao) {
 
 		try {
-			Method method = Acoes.class.getMethod(opcao.acao);
+			Method method = Acoes.class.getMethod(opcao.getAcao());
 			method.invoke(Acoes.getInstance());
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
