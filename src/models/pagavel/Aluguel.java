@@ -19,6 +19,11 @@ public class Aluguel implements IPagavel{
 	}
 
 	@Override
+	public String toString(){
+		return contrato + " \n valor: "+valor + " \n quitado: " + quitado;
+	}
+
+	@Override
 	public double getValor() {
 		return this.valor;
 	}

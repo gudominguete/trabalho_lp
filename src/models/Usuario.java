@@ -26,6 +26,12 @@ public class Usuario implements Autenticacao {
         this.logado = false;
     }
 
+    @Override
+    public String toString(){
+
+        return nome + " - " + login;
+    }
+
     /**
      * Função para retornar o nome do usuário
      * @return

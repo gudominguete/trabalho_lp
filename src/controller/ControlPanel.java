@@ -38,6 +38,7 @@ public class ControlPanel {
 		Opcao optCadLocatario = new Opcao("Cadastrar locatario", "cadastrarLocatario", inicial);
 		Opcao optAlterarSenha = new Opcao("Alterar senha", "alterarSenha", inicial);
 		Opcao optSair = new Opcao("Sair", "exit", inicial);
+		Opcao optImprimirBanco = new Opcao("Imprimir banco", "imprimirBanco", inicial);
 		
 		Opcao optLogout = new Opcao("Voltar para tela inicial", "logout", inicial);
 
@@ -59,6 +60,7 @@ public class ControlPanel {
 		listaOpcoesInicial.add(optCadLocatario);
 		listaOpcoesInicial.add(optAlterarSenha);
 		listaOpcoesInicial.add(optSair);
+		listaOpcoesInicial.add(optImprimirBanco);
 
 		inicial.setOpcoes(listaOpcoesInicial);
 

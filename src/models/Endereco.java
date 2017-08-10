@@ -138,4 +138,9 @@ public class Endereco {
 		this.uf = uf;
 	}
 
+	@Override
+	public String toString(){
+		return rua + ", "+ numero + " - " + bairro + "\n"
+				+ municipio + " - " + uf;
+	}
 }

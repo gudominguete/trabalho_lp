@@ -3,12 +3,9 @@ package controller.navegacao;
 import java.util.List;
 import java.util.Scanner;
 
-import models.Endereco;
-import models.Imovel;
-import models.Locatario;
-import models.Proprietario;
-import models.Usuario;
+import models.*;
 import controller.BancoDeDados;
+import models.pagavel.Aluguel;
 
 public class Acoes {
 	
@@ -19,13 +16,16 @@ public class Acoes {
 	public static Acoes getInstance() {
 		return INSTANCIA;
 	}
-	
-//	private Imobiliaria imobiliaria = new Imobiliaria("");
+
 	private Proprietario proprietario = new Proprietario("", "", "");
 	
 	public void listarImoveisImobiliaria(){
-		System.out.println("Não implementado: listarImoveisImobiliaria");
-		BancoDeDados.getImobiliaria().getImoveis();
+
+		Imobiliaria imobiliaria = BancoDeDados.getImobiliaria();
+
+		for(Imovel imovel:imobiliaria.getImoveis()){
+			System.out.println(imovel);
+		}
 	}
 	
 	public List<Imovel> listarImoveisProprietario() {
@@ -51,11 +51,16 @@ public class Acoes {
 		String municipio = TerminalUtils.readLine("Informe o município:", true);
 
 		String uf = TerminalUtils.readLine("Informe a UF:", true);
+
+		Double valor = Double.parseDouble(TerminalUtils.readLine("Imorme o valor:", true));
 		
 		Endereco endereco = new Endereco(rua, numero, complemento, bairro, municipio, uf);
 		
 		novoImovel.setEndereco(endereco);
-		
+
+		novoImovel.setId(BancoDeDados.getImobiliaria().getImoveis().size());
+
+		novoImovel.setValor(valor);
 		// inserir na lista do proprietario
 		
 		BancoDeDados.getImobiliaria().inserirImovel(novoImovel);
@@ -65,15 +70,42 @@ public class Acoes {
 	}
 	
 	public void gerarCobranca() {
-		System.out.println("Não implementado: gerarCobranca");
+
+		for(Contrato contrato:BancoDeDados.contratos){
+			Aluguel aluguel = new Aluguel(contrato, contrato.getImovel().getValor());
+			BancoDeDados.alugueis.add(aluguel);
+		}
 	}
 	
 	public void pagarCobranca() {
-		System.out.println("Não implementado: pagarCobranca");
+
+		for(Aluguel aluguel:BancoDeDados.alugueis){
+			if(aluguel.getContrato().getLocatario().getLogin().equals(BancoDeDados.usuarioLogado.getLogin())){
+				aluguel.pagar();
+				return ;
+			}
+		}
 	}
 	
 	public void alugarImovel() {
-		System.out.println("Não implementado: alugarImovel");
+
+
+		System.out.println("alugarImovel");
+
+		Imobiliaria imobiliaria = BancoDeDados.getImobiliaria();
+
+		for(Imovel imovel:imobiliaria.getImoveis()){
+			System.out.println(imovel);
+		}
+
+		Integer opcao = Integer.parseInt(TerminalUtils.readLine("Informe o imovel desejado:", true));
+
+		Imovel imovel = imobiliaria.getImoveis().get(opcao);
+
+		Contrato contrato = new Contrato(imovel, (Locatario) BancoDeDados.usuarioLogado);
+
+		BancoDeDados.contratos.add(contrato);
+
 	}
 	
 	public void login() {
@@ -178,6 +210,10 @@ public class Acoes {
 
 		System.exit(0);
 
+	}
+
+	public void imprimirBanco(){
+		BancoDeDados.imprimirBanco();
 	}
 
 }

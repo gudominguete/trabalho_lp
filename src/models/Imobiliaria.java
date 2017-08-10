@@ -27,6 +27,11 @@ public class Imobiliaria extends Usuario {
         this.contratos = new ArrayList<Contrato>();
     }
 
+    @Override
+    public String toString(){
+        return this.getNome() + " - " + this.cnpj;
+    }
+
     /**
      * Método para retornar o CNPJ do objeto
      * @return
@@ -119,5 +124,7 @@ public class Imobiliaria extends Usuario {
     	return null;
     	
     }
+
+
 
 }

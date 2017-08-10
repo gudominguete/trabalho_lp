@@ -22,6 +22,11 @@ public final class Contrato {
 		this.imovel = imovel;
 		this.locatario = locatario;
 	}
+
+	@Override
+	public String toString(){
+		return imovel + " + " + locatario.getNome();
+	}
 	
 	public int getId() {
 		return this.id;

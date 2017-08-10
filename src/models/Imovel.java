@@ -11,6 +11,15 @@ public class Imovel {
     private Integer id;
     private List<Aluguel> listaAluguel;
     private Endereco endereco;
+    private Double valor;
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
 
     /**
      * Método para retornar o id de um imovel
@@ -58,5 +67,10 @@ public class Imovel {
      */
     public void setListaAluguel(List<Aluguel> listaAluguel) {
         this.listaAluguel = listaAluguel;
+    }
+
+    @Override
+    public String toString(){
+        return id + endereco.toString();
     }
 }
