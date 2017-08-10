@@ -2,28 +2,19 @@ package controller.navegacao;
 
 public class Opcao {
 	
-	private int id;
-		
 	private String nome;
 	
 	private String acao;
 	
+	private String parametrosAcao;
+	
 	private Etapa proximaEtapa;
 
-	public Opcao(int id, String nome, String acao, Etapa proximaEtapa) {
+	public Opcao(String nome, String acao, Etapa proximaEtapa) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.acao = acao;
 		this.proximaEtapa = proximaEtapa;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNome() {
@@ -49,4 +40,13 @@ public class Opcao {
 	public void setProximaEtapa(Etapa proximaEtapa) {
 		this.proximaEtapa = proximaEtapa;
 	}
+
+	public String getParametrosAcao() {
+		return parametrosAcao;
+	}
+
+	public void setParametrosAcao(String parametrosAcao) {
+		this.parametrosAcao = parametrosAcao;
+	}
+
 }

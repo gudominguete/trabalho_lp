@@ -10,6 +10,8 @@ public class Usuario implements Autenticacao {
     private String senha;
     private Boolean logado;
     private Integer id;
+    
+    protected TipoUsuario tipo;
 
     /**
      * Construtor com nome, login e senha. O Id deve ser gerado ao cadastrar no banco.
@@ -116,11 +118,14 @@ public class Usuario implements Autenticacao {
             usuario = proprietario;
             //TODO:Cadastrar no banco e gerar id
         }else{
-
-            Imobiliaria imobiliaria = new Imobiliaria(nome, login, senha);
-            usuario = imobiliaria;
-            //TODO: Cadastrar no banco e gerar id
+        	usuario = null;
         }
         return usuario;
+
     }
+
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+
 }

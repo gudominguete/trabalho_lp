@@ -9,13 +9,16 @@ import java.util.Scanner;
 import controller.navegacao.Acoes;
 import controller.navegacao.Etapa;
 import controller.navegacao.Opcao;
-import models.Imobiliaria;
-import models.Usuario;
+import controller.navegacao.TerminalUtils;
+import enums.TipoUsuario;
 
 public class ControlPanel {
 	
-	private Imobiliaria imobiliaria;
-	private List<Usuario> usuarios;
+	public static Etapa inicial = new Etapa(0, "Inicial");
+//	public static Etapa login = new Etapa(1, "Login");
+	public static Etapa imobiliaria = new Etapa(1, "Imobiliária");
+	public static Etapa proprietario = new Etapa(2, "Proprietário");
+	public static Etapa locatario = new Etapa(3, "Locatário");
 	
 	private List<Etapa> etapas = new ArrayList<Etapa>();
 	
@@ -23,42 +26,66 @@ public class ControlPanel {
 	
 	public ControlPanel() {
 		
-		Etapa inicial = new Etapa(0, "Inicial");
-		Etapa login = new Etapa(1, "Login");
-		Etapa imobiliaria = new Etapa(2, "Imobiliária");
-		Etapa proprietario = new Etapa(3, "Proprietário");
-		Etapa locatario = new Etapa(4, "Locatário");
+//		Etapa inicial = new Etapa(0, "Inicial");
+//		Etapa login = new Etapa(1, "Login");
+//		Etapa imobiliaria = new Etapa(2, "Imobiliária");
+//		Etapa proprietario = new Etapa(3, "Proprietário");
+//		Etapa locatario = new Etapa(4, "Locatário");
 
 		//Opcoes login
-		Opcao optLogin = new Opcao(0, "Login", "login", login);
-		Opcao optCadImobiliaria = new Opcao(1, "Cadastrar imobiliaria", "cadastrarImobiliaria", inicial);
-		Opcao optCadProprietario = new Opcao(2, "Cadastrar proprietario", "cadastrarProprietario", inicial);
-		Opcao optCadLocatario = new Opcao(3, "Cadastrar locatario", "cadastrarLocatario", inicial);
-		Opcao optAlterarSenha = new Opcao(4, "Alterar senha", "alterarSenha", inicial);
-		Opcao optLogout = new Opcao(5, "Sair", "exit", inicial);
+		Opcao optLogin = new Opcao("Login", "login", inicial);
+		Opcao optCadProprietario = new Opcao("Cadastrar proprietario", "cadastrarProprietario", inicial);
+		Opcao optCadLocatario = new Opcao("Cadastrar locatario", "cadastrarLocatario", inicial);
+		Opcao optAlterarSenha = new Opcao("Alterar senha", "alterarSenha", inicial);
+		Opcao optSair = new Opcao("Sair", "exit", inicial);
+		
+		Opcao optLogout = new Opcao("Voltar para tela inicial", "logout", inicial);
 
-		Opcao optListarImoveisImobiliaria = new Opcao(3, "Listar imóveis", "listarImoveisImobiliaria", imobiliaria);
-		Opcao optAlugarImovel = new Opcao(4, "Alugar imovel", "alugarImovel", imobiliaria);
-		Opcao optGerarCobranca = new Opcao(5, "Gerar cobrança", "gerarCobranca", imobiliaria);
-		Opcao optRemoverImovel = new Opcao(6, "Remover imóvel", "removerImovel", imobiliaria);
+//		Opcoes da imobiliaria
+		Opcao optListarImoveisImobiliaria = new Opcao("Listar imóveis", "listarImoveisImobiliaria", imobiliaria);
+		Opcao optGerarCobranca = new Opcao("Gerar cobrança", "gerarCobranca", imobiliaria);
 
+//		Opcoes do proprietario
+		Opcao optCadImovel = new Opcao("Cadastrar imóvel", "cadastrarImovel", proprietario);
+		Opcao optRemoverImovel = new Opcao("Remover imóvel", "removerImovel", proprietario);
+		
+//		Opcoes do locatario
+		Opcao optAlugarImovel = new Opcao("Alugar imóvel", "alugarImovel", proprietario);
+		Opcao optPagarCobranca = new Opcao("Pagar cobrança", "pagarCobranca", proprietario);
 
 		List<Opcao> listaOpcoesInicial = new ArrayList<>();
 		listaOpcoesInicial.add(optLogin);
-		listaOpcoesInicial.add(optCadImobiliaria);
 		listaOpcoesInicial.add(optCadProprietario);
 		listaOpcoesInicial.add(optCadLocatario);
 		listaOpcoesInicial.add(optAlterarSenha);
-		listaOpcoesInicial.add(optLogout);
+		listaOpcoesInicial.add(optSair);
 
 		inicial.setOpcoes(listaOpcoesInicial);
 
-		List<Opcao> listaOpcoesLogin = new ArrayList<>();
-		listaOpcoesLogin.add(optLogout);
-		login.setOpcoes(listaOpcoesLogin);
+//		List<Opcao> listaOpcoesLogin = new ArrayList<>();
+//		listaOpcoesLogin.add(optLogout);
+//		login.setOpcoes(listaOpcoesLogin);
+		
+		List<Opcao> listaOpcoesImobiliaria = new ArrayList<>();
+		listaOpcoesImobiliaria.add(optListarImoveisImobiliaria);
+		listaOpcoesImobiliaria.add(optGerarCobranca);
+		listaOpcoesImobiliaria.add(optLogout);
+		imobiliaria.setOpcoes(listaOpcoesImobiliaria);
+		
+		List<Opcao> listaOpcoesProprietario = new ArrayList<>();
+		listaOpcoesProprietario.add(optCadImovel);
+		listaOpcoesProprietario.add(optRemoverImovel);
+		listaOpcoesProprietario.add(optLogout);
+		proprietario.setOpcoes(listaOpcoesProprietario);
+		
+		List<Opcao> listaOpcoesLocatario = new ArrayList<>();
+		listaOpcoesLocatario.add(optAlugarImovel);
+		listaOpcoesLocatario.add(optPagarCobranca);
+		listaOpcoesLocatario.add(optLogout);
+		locatario.setOpcoes(listaOpcoesLocatario);
 		
 		etapas.add(inicial);
-		etapas.add(login);
+//		etapas.add(login);
 		etapas.add(imobiliaria);
 		etapas.add(proprietario);
 		etapas.add(locatario);
@@ -85,31 +112,32 @@ public class ControlPanel {
 							" |_.__/ \\___/ \\__,_|___/      \\_/ |_|_| |_|\\__,_|\\__,_|___/\r\n" +
 							"                                                           \r\n");
 
-		exibirEtapa(etapaAtual);
+		exibirEtapa();
 		
 	}
 	
-	private void exibirEtapa(Etapa etapa) {
+	private void exibirEtapa() {
 
-		System.out.println(etapa.getNome());
+		System.out.println("=====================================");
+		System.out.println("Você está em: " + etapaAtual.getNome());
 		System.out.println("Escolha a opção desejada:");
 		
-		for (Opcao opcao : etapa.getOpcoes()) {
+		int indiceOpcao = 0;
+		for (Opcao opcao : etapaAtual.getOpcoes()) {
 
-			System.out.println((opcao.getId() + 1) + " - " + opcao.getNome());
-			
+			System.out.println((++indiceOpcao) + " - " + opcao.getNome());
+
 		}
 		
-		System.out.println("Número da opção: ");
-		Scanner sc = new Scanner(System.in);
-		int opt = sc.nextInt();
-//		sc.close();
+		int indiceEscolhido = Integer.parseInt(TerminalUtils.readLine("Número da opção: ", true));
 		
-		Opcao opcaoEscolhida = etapa.getOpcoes().get(opt - 1);
+		Opcao opcaoEscolhida = etapaAtual.getOpcoes().get(indiceEscolhido - 1);
 		
 		processarOpcao(opcaoEscolhida);
 		
-		exibirEtapa(opcaoEscolhida.getProximaEtapa());
+		etapaAtual = opcaoEscolhida.getProximaEtapa();
+		
+		exibirEtapa();
 
 	}
 	
@@ -118,12 +146,34 @@ public class ControlPanel {
 		try {
 			Method method = Acoes.class.getMethod(opcao.getAcao());
 			method.invoke(Acoes.getInstance());
+			
+			if(opcao.getAcao().equals("login")){
+				opcao.setProximaEtapa(getEtapaParaUsuarioLogado());
+			}
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private Etapa getEtapaParaUsuarioLogado() {
+		
+		if(BancoDeDados.usuarioLogado == null){
+			return inicial;
+		}
+
+		if(BancoDeDados.usuarioLogado.getTipo().equals(TipoUsuario.PROPRIETARIO)){
+			return proprietario;
+		}else if(BancoDeDados.usuarioLogado.getTipo().equals(TipoUsuario.LOCATARIO)){
+			return locatario;
+		}else if(BancoDeDados.usuarioLogado.getTipo().equals(TipoUsuario.IMOBILIARIA)){
+			return imobiliaria;
+		}
+		
+		return inicial;
+		
 	}
 
 }

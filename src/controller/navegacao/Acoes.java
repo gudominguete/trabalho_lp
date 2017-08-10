@@ -3,10 +3,13 @@ package controller.navegacao;
 import java.util.List;
 import java.util.Scanner;
 
+import models.Endereco;
+import models.Imovel;
+import models.Locatario;
+import models.Proprietario;
+import models.Usuario;
 import controller.BancoDeDados;
-import models.*;
 
-// Tornar Singleton
 public class Acoes {
 	
 	private static Acoes INSTANCIA = new Acoes();
@@ -17,29 +20,17 @@ public class Acoes {
 		return INSTANCIA;
 	}
 	
-	private Imobiliaria imobiliaria = new Imobiliaria("", "", "");
+//	private Imobiliaria imobiliaria = new Imobiliaria("");
 	private Proprietario proprietario = new Proprietario("", "", "");
 	
-	Scanner sc = new Scanner(System.in);
-	
-	private String readLine(String descricao, boolean obrigatorio) {
-
-		System.out.println(descricao);
-		String valor = sc.nextLine();
-		
-		if(obrigatorio){
-			while(valor.isEmpty()){
-				System.out.println("Essa informação não pode ser deixada em branco.");
-				valor = sc.nextLine();
-			}
-		}
-		
-		return valor;
-
+	public void listarImoveisImobiliaria(){
+		System.out.println("Não implementado: listarImoveisImobiliaria");
+		BancoDeDados.getImobiliaria().getImoveis();
 	}
 	
-	public void listarImoveisImobiliaria(){
-		imobiliaria.getListaImoveis();
+	public List<Imovel> listarImoveisProprietario() {
+		System.out.println("Não implementado: listarImoveisProprietario");
+		return proprietario.getListaImoveis();
 	}
 	
 	public Imovel cadastrarImovel() {
@@ -49,17 +40,17 @@ public class Acoes {
 		System.out.println("Cadastro de imóveis");
 		System.out.println("Por favor, preencha os dados de endereço");
 
-		String rua = readLine("Informe a rua:", true);
+		String rua = TerminalUtils.readLine("Informe a rua:", true);
 
-		String numero = readLine("Informe o número:", true);
+		String numero = TerminalUtils.readLine("Informe o número:", true);
 
-		String bairro = readLine("Informe o bairro:", true);
+		String bairro = TerminalUtils.readLine("Informe o bairro:", true);
 
-		String complemento = readLine("Informe o complemento:", false);
+		String complemento = TerminalUtils.readLine("Informe o complemento:", false);
 
-		String municipio = readLine("Informe o município:", true);
+		String municipio = TerminalUtils.readLine("Informe o município:", true);
 
-		String uf = readLine("Informe a UF:", true);
+		String uf = TerminalUtils.readLine("Informe a UF:", true);
 		
 		Endereco endereco = new Endereco(rua, numero, complemento, bairro, municipio, uf);
 		
@@ -67,78 +58,83 @@ public class Acoes {
 		
 		// inserir na lista do proprietario
 		
-		imobiliaria.inserirImovel(novoImovel);
+		BancoDeDados.getImobiliaria().inserirImovel(novoImovel);
 		
 		return novoImovel;
 
 	}
 	
-	public List<Imovel> listarImoveisProprietario() {
-		return proprietario.getListaImoveis();
+	public void gerarCobranca() {
+		System.out.println("Não implementado: gerarCobranca");
+	}
+	
+	public void pagarCobranca() {
+		System.out.println("Não implementado: pagarCobranca");
+	}
+	
+	public void alugarImovel() {
+		System.out.println("Não implementado: alugarImovel");
 	}
 	
 	public void login() {
+		
+		String login = TerminalUtils.readLine("Informe o login:", true);
 
-		String login = readLine("Informe a login:", true);
-
-		String senha = readLine("Informe o senha:", true);
+		String senha = TerminalUtils.readLine("Informe a senha:", true);
+		
+		TerminalUtils.clear();
 
 		System.out.println("Realizando login");
 		for(Usuario usuario: BancoDeDados.usuarios){
 
 			if(usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)){
-
-				System.out.println(usuario.getNome());
+				BancoDeDados.usuarioLogado = usuario;
+				System.out.println("Usuário logado: " + usuario.getNome());
 			}
 		}
-	}
-	
-	public void cadastrarImobiliaria() {
 
-		System.out.println("Cadastrando Imobiliaria");
-
-		String nome = readLine("Informe a nome:", true);
-
-		String login = readLine("Informe o login:", true);
-
-		String senha = readLine("Informe o senha:", true);
-
-
-		Imobiliaria imobiliaria = new Imobiliaria(nome, login, senha);
-
-		BancoDeDados.usuarios.add(imobiliaria);
 	}
 
 	public void cadastrarProprietario() {
-
+		
 		System.out.println("Cadastrando proprietario");
 
-		String nome = readLine("Informe a nome:", true);
+		String nome = TerminalUtils.readLine("Informe o nome:", true);
 
-		String login = readLine("Informe o login:", true);
+		String login = TerminalUtils.readLine("Informe o login:", true);
 
-		String senha = readLine("Informe o senha:", true);
-
+		String senha = TerminalUtils.readLine("Informe a senha:", true);
 
 		Proprietario proprietario = new Proprietario(nome, login, senha);
 
 		BancoDeDados.usuarios.add(proprietario);
+		
+		TerminalUtils.clear();
+		
+		System.out.println("Proprietário cadastrado com sucesso");
+
 	}
 
 	public void cadastrarLocatario() {
+		
+		TerminalUtils.clear();
 
 		System.out.println("Cadastrando locatario");
 
-		String nome = readLine("Informe a nome:", true);
+		String nome = TerminalUtils.readLine("Informe o nome:", true);
 
-		String login = readLine("Informe o login:", true);
+		String login = TerminalUtils.readLine("Informe o login:", true);
 
-		String senha = readLine("Informe o senha:", true);
-
+		String senha = TerminalUtils.readLine("Informe a senha:", true);
 
 		Locatario locatario = new Locatario(nome, login, senha);
 
 		BancoDeDados.usuarios.add(locatario);
+		
+		TerminalUtils.clear();
+		
+		System.out.println("Proprietário cadastrado com sucesso");
+
 	}
 
 	public void alterarSenha() {
@@ -146,17 +142,17 @@ public class Acoes {
 		System.out.println("Alteração de senha");
 //		System.out.println("Por favor, preencha os dados de endereço");
 
-		String nomeUsuario = readLine("Informe o nome de usuário:", true);
+		String nomeUsuario = TerminalUtils.readLine("Informe o nome de usuário:", true);
 		
 //		Se não existe usuário, retornar
 		
-		String senhaAtual = readLine("Informe a senha atual:", true);
+		String senhaAtual = TerminalUtils.readLine("Informe a senha atual:", true);
 		
 //		Se senha estiver errada, retornar
 		
-		String novaSenha = readLine("Informe a nova senha:", true);
+		String novaSenha = TerminalUtils.readLine("Informe a nova senha:", true);
 		
-		String confirmacaoNovaSenha = readLine("Confirme a nova senha:", true);
+		String confirmacaoNovaSenha = TerminalUtils.readLine("Confirme a nova senha:", true);
 		
 		if(!confirmacaoNovaSenha.equals(novaSenha)){
 //			Mensagem
@@ -167,11 +163,21 @@ public class Acoes {
 	}
 	
 	public void logout() {
-		System.out.println("Realizando logout");
+
+		TerminalUtils.clear();
+		
+		BancoDeDados.usuarioLogado = null;
+
+		System.out.println("Realizando logout...");
+
 	}
 
 	public void exit(){
+
+		System.out.println("Sessão encerrada. Obrigado por usar o SysImob.");
+
 		System.exit(0);
+
 	}
 
 }

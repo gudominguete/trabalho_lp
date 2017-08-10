@@ -2,6 +2,8 @@ package models;
 
 import java.util.List;
 
+import enums.TipoUsuario;
+
 /**
  * Created by gudominguete on 05/08/17.
  */
@@ -17,6 +19,7 @@ public class Proprietario extends Pessoa{
 	 */
     public Proprietario(String nome, String login, String senha) {
         super(nome, login, senha);
+        this.tipo = TipoUsuario.PROPRIETARIO;
     }
 
 	/**
