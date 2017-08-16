@@ -27,6 +27,10 @@ public class Imobiliaria extends Usuario {
         this.contratos = new ArrayList<Contrato>();
     }
 
+    /**
+     * Método para imprimir a classe imobiliaria
+     * @return
+     */
     @Override
     public String toString(){
         return this.getNome() + " - " + this.cnpj;
@@ -82,7 +86,13 @@ public class Imobiliaria extends Usuario {
         return null;
 
     }
-    
+
+    /**
+     * Criar cobrancas sobre um contrato e um valor
+     * @param tipoCobranca
+     * @param contrato
+     * @param valor
+     */
     public void gerarCobranca(TipoCobranca tipoCobranca, Contrato contrato, double valor) {
 
     	IPagavel cobranca = null;
@@ -98,7 +108,13 @@ public class Imobiliaria extends Usuario {
     	}
 
     }
-    
+
+
+    /**
+     * Buscar um contrato por seu id
+     * @param idContrato
+     * @return
+     */
     private Contrato getContratoPorId(int idContrato){
 
     	for (Contrato contrato : contratos) {
@@ -112,7 +128,12 @@ public class Imobiliaria extends Usuario {
     	return null;
     	
     }
-    
+
+    /**
+     * Listar cobranças por id de contrato
+     * @param idContrato
+     * @return
+     */
     public List<IPagavel> listarCobrancasPorIdContrato(int idContrato) {
     	
     	Contrato contrato = getContratoPorId(idContrato);

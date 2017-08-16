@@ -18,7 +18,10 @@ public class Acoes {
 	}
 
 	private Proprietario proprietario = new Proprietario("", "", "");
-	
+
+	/**
+	 * Listar os imoveis da imobiliaria
+	 */
 	public void listarImoveisImobiliaria(){
 
 		Imobiliaria imobiliaria = BancoDeDados.getImobiliaria();
@@ -27,12 +30,19 @@ public class Acoes {
 			System.out.println(imovel);
 		}
 	}
-	
+
+	/**
+	 * Listar os imoveis do proprietario
+	 * @return
+	 */
 	public List<Imovel> listarImoveisProprietario() {
-		System.out.println("Não implementado: listarImoveisProprietario");
 		return proprietario.getListaImoveis();
 	}
-	
+
+	/**
+	 * Cadastrar um imovel no banco de dados da imobiliaria
+	 * @return
+	 */
 	public Imovel cadastrarImovel() {
 		
 		Imovel novoImovel = new Imovel();
@@ -68,7 +78,10 @@ public class Acoes {
 		return novoImovel;
 
 	}
-	
+
+	/**
+	 * Gera as cobranças em relação aos contratos no banco de dados
+	 */
 	public void gerarCobranca() {
 
 		for(Contrato contrato:BancoDeDados.contratos){
@@ -76,7 +89,10 @@ public class Acoes {
 			BancoDeDados.alugueis.add(aluguel);
 		}
 	}
-	
+
+	/**
+	 * pagar cobrança do usuário
+	 */
 	public void pagarCobranca() {
 
 		for(Aluguel aluguel:BancoDeDados.alugueis){
@@ -86,7 +102,10 @@ public class Acoes {
 			}
 		}
 	}
-	
+
+	/**
+	 * Aluguar um imovel
+	 */
 	public void alugarImovel() {
 
 
@@ -107,7 +126,10 @@ public class Acoes {
 		BancoDeDados.contratos.add(contrato);
 
 	}
-	
+
+	/**
+	 * Realiza a autenticação no sistema
+	 */
 	public void login() {
 		
 		String login = TerminalUtils.readLine("Informe o login:", true);
@@ -127,6 +149,9 @@ public class Acoes {
 
 	}
 
+	/**
+	 * Cadastrar um novo usuário do tipo proprietário
+	 */
 	public void cadastrarProprietario() {
 		
 		System.out.println("Cadastrando proprietario");
@@ -147,6 +172,9 @@ public class Acoes {
 
 	}
 
+	/**
+	 * Cadastrar um novo usuário do tipo locatario
+	 */
 	public void cadastrarLocatario() {
 		
 		TerminalUtils.clear();
@@ -169,6 +197,9 @@ public class Acoes {
 
 	}
 
+	/**
+	 * Alterar a senha do usuário
+	 */
 	public void alterarSenha() {
 		
 		System.out.println("Alteração de senha");
@@ -193,7 +224,10 @@ public class Acoes {
 //		Senha alterada com sucesso
 
 	}
-	
+
+	/**
+	 * Sair da conta do usuário
+	 */
 	public void logout() {
 
 		TerminalUtils.clear();
@@ -204,6 +238,9 @@ public class Acoes {
 
 	}
 
+	/**
+	 * Sair do sistema
+	 */
 	public void exit(){
 
 		System.out.println("Sessão encerrada. Obrigado por usar o SysImob.");
@@ -212,6 +249,9 @@ public class Acoes {
 
 	}
 
+	/**
+	 * Imprimir dados do banco
+	 */
 	public void imprimirBanco(){
 		BancoDeDados.imprimirBanco();
 	}

@@ -138,6 +138,10 @@ public class Endereco {
 		this.uf = uf;
 	}
 
+	/**
+	 * Método para imprimir um endereço
+	 * @return
+	 */
 	@Override
 	public String toString(){
 		return rua + ", "+ numero + " - " + bairro + "\n"

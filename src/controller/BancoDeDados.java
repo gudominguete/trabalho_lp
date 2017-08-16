@@ -23,14 +23,24 @@ public abstract class BancoDeDados {
 
     public static List<Aluguel> alugueis = new ArrayList<>();
 
+    /**
+     * Método para iniciar o banco de dados
+     */
     public static void init() {
     	usuarios.add(imobiliaria);
 	}
-    
+
+    /**
+     * Método para buscar a imobiliaria dona do sistema
+     * @return
+     */
     public static Imobiliaria getImobiliaria() {
     	return imobiliaria;
     }
 
+    /**
+     * Método para imprimir os elementos do banco
+     */
     public static void imprimirBanco(){
 
         System.out.println("Imobiliaria");

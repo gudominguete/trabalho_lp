@@ -23,14 +23,11 @@ public class ControlPanel {
 	private List<Etapa> etapas = new ArrayList<Etapa>();
 	
 	Etapa etapaAtual;
-	
+
+	/**
+	 * Método que configura o sistema
+	 */
 	public ControlPanel() {
-		
-//		Etapa inicial = new Etapa(0, "Inicial");
-//		Etapa login = new Etapa(1, "Login");
-//		Etapa imobiliaria = new Etapa(2, "Imobiliária");
-//		Etapa proprietario = new Etapa(3, "Proprietário");
-//		Etapa locatario = new Etapa(4, "Locatário");
 
 		//Opcoes login
 		Opcao optLogin = new Opcao("Login", "login", inicial);
@@ -64,9 +61,6 @@ public class ControlPanel {
 
 		inicial.setOpcoes(listaOpcoesInicial);
 
-//		List<Opcao> listaOpcoesLogin = new ArrayList<>();
-//		listaOpcoesLogin.add(optLogout);
-//		login.setOpcoes(listaOpcoesLogin);
 		
 		List<Opcao> listaOpcoesImobiliaria = new ArrayList<>();
 		listaOpcoesImobiliaria.add(optListarImoveisImobiliaria);
@@ -95,7 +89,10 @@ public class ControlPanel {
 		etapaAtual = inicial;
 		
 	}
-	
+
+	/**
+	 * Método para imprimir a tela de boas vindas
+	 */
 	public void print() {
 		
 		System.out.println("+-+-+-+-+-+-+-+ +-+-+ +-+-+-+-+-+-+");
@@ -117,7 +114,10 @@ public class ControlPanel {
 		exibirEtapa();
 		
 	}
-	
+
+	/**
+	 * Método para imprimir a etapa atual
+	 */
 	private void exibirEtapa() {
 
 		System.out.println("=====================================");
@@ -142,7 +142,12 @@ public class ControlPanel {
 		exibirEtapa();
 
 	}
-	
+
+
+	/**
+	 * Executa a opção selecionada pelo usuário
+	 * @param opcao
+	 */
 	private void processarOpcao(Opcao opcao) {
 
 		try {
@@ -159,7 +164,11 @@ public class ControlPanel {
 		}
 
 	}
-	
+
+	/**
+	 * Verifica qual o tipo de usuário logado, e retorna qual etapa o sistema deve processar
+	 * @return
+	 */
 	private Etapa getEtapaParaUsuarioLogado() {
 		
 		if(BancoDeDados.usuarioLogado == null){

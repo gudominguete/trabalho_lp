@@ -16,6 +16,11 @@ public final class Contrato {
 	
 	private List<IPagavel> cobrancas;
 
+	/**
+	 * Construtor da classe
+	 * @param imovel
+	 * @param locatario
+	 */
 	public Contrato(Imovel imovel, Locatario locatario) {
 		super();
 		this.id = Contrato.ID_CONTRATO++;
@@ -23,27 +28,51 @@ public final class Contrato {
 		this.locatario = locatario;
 	}
 
+	/**
+	 * Método para imprimir o contrato
+	 * @return
+	 */
 	@Override
 	public String toString(){
 		return imovel + " + " + locatario.getNome();
 	}
-	
+
+	/**
+	 * Método que retorne o id
+	 * @return
+	 */
 	public int getId() {
 		return this.id;
 	}
 
+	/**
+	 * Método para retornar o imovel do contrato
+	 * @return
+	 */
 	public Imovel getImovel() {
 		return imovel;
 	}
 
+	/**
+	 * Método para buscar o locatario do contrato
+	 * @return
+	 */
 	public Locatario getLocatario() {
 		return locatario;
 	}
 
+	/**
+	 * Método para buscar as cobranças
+	 * @return
+	 */
 	public List<IPagavel> getCobrancas() {
 		return cobrancas;
 	}
-	
+
+	/**
+	 * Método para adicionar a cobrança
+	 * @param cobranca
+	 */
 	public void adicionarCobranca(IPagavel cobranca) {
 
 		this.cobrancas.add(cobranca);

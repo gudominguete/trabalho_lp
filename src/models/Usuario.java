@@ -26,6 +26,10 @@ public class Usuario implements Autenticacao {
         this.logado = false;
     }
 
+    /**
+     * Método para imprimir um usuário
+     * @return
+     */
     @Override
     public String toString(){
 
@@ -86,6 +90,11 @@ public class Usuario implements Autenticacao {
         return id;
     }
 
+    /**
+     * Método para realizar a autenticação do usuário no sistema
+     * @param login
+     * @param senha
+     */
     @Override
     public void autenticacao(String login, String senha) {
         if(login.equals(this.login) && senha.equals(this.senha)){
@@ -97,16 +106,32 @@ public class Usuario implements Autenticacao {
         }
     }
 
+    /**
+     * Método para obter a senha do usuário
+     * @return
+     */
     @Override
     public String recuperarSenha() {
         return this.senha;
     }
 
+    /**
+     * Método para realizar a troca de senha
+     * @param senha
+     */
     @Override
     public void trocarSenha(String senha) {
         this.senha = senha;
     }
-;
+
+    /**
+     * Método para cadastrar um novo usuário
+     * @param nome
+     * @param login
+     * @param senha
+     * @param tipoUsuario
+     * @return
+     */
     @Override
     public Usuario cadastrarUsuario(String nome, String login, String senha, TipoUsuario tipoUsuario) {
 
@@ -130,6 +155,10 @@ public class Usuario implements Autenticacao {
 
     }
 
+    /**
+     * Retorna o tipo de usuario
+     * @return
+     */
 	public TipoUsuario getTipo() {
 		return tipo;
 	}

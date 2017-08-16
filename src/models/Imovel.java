@@ -13,10 +13,18 @@ public class Imovel {
     private Endereco endereco;
     private Double valor;
 
+    /**
+     * Método para obter o valor do immóvel
+     * @return
+     */
     public Double getValor() {
         return valor;
     }
 
+    /**
+     * Método para alterar o valor do imóvel
+     * @param valor
+     */
     public void setValor(Double valor) {
         this.valor = valor;
     }
@@ -69,6 +77,10 @@ public class Imovel {
         this.listaAluguel = listaAluguel;
     }
 
+    /**
+     * Método para imprimir um tipo Imóvel
+     * @return
+     */
     @Override
     public String toString(){
         return id + endereco.toString();
